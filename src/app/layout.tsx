@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
 import "./globals.css";
+import { siteConfig } from "@/config/site";
 
 const noto_sans_jp = Noto_Sans_JP({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "My Blog with Next.js",
-  description: "Next.jsとshadcnを使用して作成したブログです。",
+  title: {
+    template: `%s | ${siteConfig.name}`,
+    default: `${siteConfig.name} with shadcn`,
+  },
+  description: `${siteConfig.description}`,
+  keywords: siteConfig.keywords,
+  authors: siteConfig.authors,
 };
 
 export default function RootLayout({

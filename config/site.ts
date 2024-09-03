@@ -9,4 +9,6 @@ export const siteConfig: SiteConfig = {
     x: "https://x.com/HarumiWebDesign",
     github: "https://github.com/harumiWeb",
   },
+  keywords: ["Next.js", "shadcn", "ブログ", "ブログサイト", "ブログサイト作成"],
+  authors: [{ name: "harumi" }],
 };
