@@ -7,8 +7,12 @@ import { buttonVariants } from "@/src/components/ui/button";
 import GoogleIcon from "@/src/components/icons/GoogleIcon";
 import GitHubIcon from "@/src/components/icons/GitHubIcon";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { Spinner } from "./icons/Spinner";
 
 export default function UserAuthForm() {
+  const [isGithubLoading, setIsGithubLoading] = useState<boolean>(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
   return (
     <div className="container mx-auto px-4">
       <form>
@@ -45,9 +49,13 @@ export default function UserAuthForm() {
         <div className="relative flex flex-col gap-2 mt-4">
           <button
             className={cn(buttonVariants({ variant: "outline" }), "flex gap-2")}
-            onClick={() => signIn("google",{callbackUrl:"/"})}
+            onClick={() => {
+              setIsGoogleLoading(true);
+              signIn("google",{callbackUrl:"/dashboard"})
+            }}
+            disabled={isGoogleLoading}
           >
-            <GoogleIcon />
+            {isGoogleLoading ? <Spinner /> : <GoogleIcon />}
             Googleでログイン
           </button>
           <button
@@ -55,9 +63,13 @@ export default function UserAuthForm() {
               buttonVariants({ variant: "outline" }),
               "bg-gray-800 text-white flex gap-2 hover:bg-gray-900 hover:text-white"
             )}
-            onClick={() => signIn("github",{callbackUrl:"/"})}
+            onClick={() => {
+              setIsGithubLoading(true);
+              signIn("github",{callbackUrl:"/dashboard"})
+            }}
+            disabled={isGithubLoading}
           >
-            <GitHubIcon />
+            {isGithubLoading ? <Spinner /> : <GitHubIcon />}
             GitHubでログイン
           </button>
         </div>

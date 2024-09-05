@@ -3,15 +3,8 @@ import Link from "next/link";
 import { buttonVariants } from "@/src/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { features } from "@/config/features";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 
-export default async function IndexPage() {
-  const session = await auth();
-  if(!session?.user){
-    redirect("/login");
-  }
-  console.log(session?.user);
+export default function IndexPage() {
   return (
     <>
       <section className="pt-20 md:pt-24 lg:pt-32 pb-8 md:pb-12 px-6">

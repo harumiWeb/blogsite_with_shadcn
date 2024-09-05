@@ -4,6 +4,23 @@ export type MainNavItem = {
   disabled?: boolean;
 };
 
+export type SidebarNavItem = {
+  title: string;
+  href: string;
+  disabled?: boolean;
+  external?: boolean;
+  icon?: React.ReactNode;
+} & (
+  | {
+      href: string;
+      items?: never;
+    }
+  | {
+      href?: string;
+      items: SidebarNavItem[];
+    }
+);
+
 export type SiteConfig = {
   name: string;
   subName: string;
@@ -19,6 +36,11 @@ export type SiteConfig = {
 
 export type MarketingConfig = {
   mainNav: MainNavItem[];
+};
+
+export type DashboardConfig = {
+  mainNav: MainNavItem[];
+  sidebarNav: SidebarNavItem[];
 };
 
 export type Feature = {

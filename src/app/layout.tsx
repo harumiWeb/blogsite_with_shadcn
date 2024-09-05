@@ -3,6 +3,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import { cn } from "@/src/lib/utils";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import { Toaster } from "@/src/components/ui/toaster";
 
 const noto_sans_jp = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         )}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

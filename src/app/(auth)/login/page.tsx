@@ -1,7 +1,13 @@
 import Link from "next/link";
 import UserAuthForm from "@/src/components/UserAuthForm";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth();
+  if(session?.user){
+    redirect("/dashboard");
+  }
   return (
     <div className="container mx-auto flex justify-center items-center h-screen">
       <div className="w-full max-w-md mx-auto sm:max-w-sm space-y-6">
